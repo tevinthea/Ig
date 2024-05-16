@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click the Button Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #gameButton {
+            padding: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        #score {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        #shareButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click the Button Game</h1>
+    <button id="gameButton">Click me!</button>
+    <div id="score">Score: 0</div>
+    <button id="shareButton">Share on Instagram</button>
+
+    <script>
+        let score = 0;
+        const gameButton = document.getElementById('gameButton');
+        const scoreDiv = document.getElementById('score');
+        const shareButton = document.getElementById('shareButton');
+
+        gameButton.addEventListener('click', () => {
+            score++;
+            scoreDiv.textContent = 'Score: ' + score;
+            if (score > 0) {
+                shareButton.style.display = 'inline-block';
+            }
+        });
+
+        shareButton.addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const text = `I scored ${score} points in the Click the Button Game!`;
+            const instagramShareUrl = `https://www.instagram.com/stories/create/?url=${url}&text=${text}`;
+            window.open(instagramShareUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
